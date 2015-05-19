@@ -49,7 +49,7 @@
     CGFloat realW = _model.RealWidth;
     CGFloat realH =  _model.RealHeight;
     NSString *barStyle = [(doUIModule*)_model GetPropertyValue:@"style"];
-    
+
     if ([barStyle isEqualToString:STYLEHORIZOTAL])
     {
         do_UIProgressView *progressView = [[do_UIProgressView alloc]init];
@@ -60,8 +60,7 @@
     }
     else
     {
-        do_UIActivityView *activityView = [[do_UIActivityView alloc]initWithActivityIndicatorStyle:barStyle];
-        activityView.frame = CGRectMake(realW / 2, realH / 2, 0, 0);
+        do_UIActivityView *activityView = [[do_UIActivityView alloc] initWithActivityIndicatorStyle:@"large"];
         [activityView startAnimating];
         prograssBarView = activityView;
         self.do_activity = activityView;
@@ -88,10 +87,8 @@
     }
     else if (self.do_activity)
     {
-        frame = CGRectMake( _model.RealWidth / 2 , _model.RealHeight / 2, _model.RealWidth, _model.RealHeight);
-        self.do_activity.frame = frame;
+        self.do_activity.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     }
-    
 }
 
 #pragma mark - TYPEID_IView协议方法（必须）
@@ -129,14 +126,13 @@
                 return;
             }
             do_UIActivityView *activityView = (do_UIActivityView *)subView;
-            
             activityView.activityIndicatorViewStyle = [newValue isEqualToString:@"large"] ? UIActivityIndicatorViewStyleWhiteLarge : UIActivityIndicatorViewStyleGray;
             activityView.color = [UIColor grayColor];
             [activityView startAnimating];
         }
     }
     else if ([subView isKindOfClass:[do_UIProgressView class]]){//从do_UIProgressView变化
-        if ([newValue isEqualToString:STYLEHORIZOTAL] ||[newValue isEqualToString:STYLENORMAL]) {
+        if ([newValue isEqualToString:STYLEHORIZOTAL] || [newValue isEqualToString:STYLENORMAL]) {
             return ;
         }
         [subView removeFromSuperview];
