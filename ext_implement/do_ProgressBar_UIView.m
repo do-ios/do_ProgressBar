@@ -61,6 +61,7 @@
     else
     {
         do_UIActivityView *activityView = [[do_UIActivityView alloc] initWithActivityIndicatorStyle:@"large"];
+        activityView.color = [UIColor whiteColor];
         [activityView startAnimating];
         prograssBarView = activityView;
         self.do_activity = activityView;
