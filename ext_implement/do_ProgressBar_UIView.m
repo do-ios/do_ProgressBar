@@ -89,6 +89,8 @@
     else if (self.do_activity)
     {
         self.do_activity.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        self.do_activity.hidden = NO;
+        [self.do_activity startAnimating];
     }
 }
 
